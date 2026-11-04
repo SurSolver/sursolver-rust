@@ -1,0 +1,31 @@
+[package]
+name = "sursolver"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "Official Rust client for the SurSolver captcha solver API: reCAPTCHA v3, Cloudflare Turnstile, Cloudflare Challenge (cf_clearance), GeeTest, DataDome, AWS WAF, Akamai, Kasada and image captchas."
+license = "MIT"
+repository = "https://github.com/sursolver/sursolver-rust"
+homepage = "https://sursolver.com"
+documentation = "https://docs.rs/sursolver"
+readme = "README.md"
+keywords = ["captcha", "recaptcha", "turnstile", "cloudflare", "captcha-solver"]
+categories = ["api-bindings", "web-programming::http-client"]
+include = ["src/**", "Cargo.toml", "README.md", "LICENSE", "CHANGELOG.md"]
+
+[features]
+default = ["rustls"]
+## TLS through rustls (reqwest's default backend).
+rustls = ["reqwest/rustls"]
+## TLS through the platform library (SChannel, Secure Transport, OpenSSL).
+native-tls = ["reqwest/native-tls"]
+
+[dependencies]
+reqwest = { version = "0.13", default-features = false, features = ["http2", "system-proxy"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1.43", features = ["time"] }
+
+[dev-dependencies]
+tokio = { version = "1.43", features = ["macros", "rt-multi-thread", "net", "io-util", "sync"] }
+regex-lite = "0.1"

@@ -1,0 +1,16 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Editors and OS
+.idea/
+.vscode/
+.vs/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Rust
+target/
+Cargo.lock
